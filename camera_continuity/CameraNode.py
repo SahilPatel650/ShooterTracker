@@ -19,4 +19,7 @@ class CameraNode:
     def get_frame_path(self):
         #return path to directory containing video feed
         return "video-data/frames/camera" + str(self.value)
+    
+    def get_render_video_path(self):
+        return "video-data/rendered-video/camera" + str(self.value) + ".mp4"
             

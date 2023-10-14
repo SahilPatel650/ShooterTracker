@@ -3,3 +3,4 @@ yolo-training/yolov8n.pt
 yolo-training/yolov8s.pt
 yolo-training/yolov8x.pt
 camera-continuity/__pycache__
+*.pyc

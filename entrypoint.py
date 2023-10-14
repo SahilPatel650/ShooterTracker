@@ -32,12 +32,12 @@ def init_cameras():
 
 if __name__ == "__main__":
     init_cameras()
-    #split_video.split(monitored_cameras[0].get_video_feed(0), monitored_cameras[0].get_frame_path())
-    # for i in range(0, 268):
-    #     boxes, confs, class_ids = gun_detection.image_detect(monitored_cameras[0].get_frame(i))
+    split_video.split(monitored_cameras[0].get_video_feed(0), monitored_cameras[0].get_frame_path())
+    for i in range(0, 268):
+        boxes, confs, class_ids = gun_detection.image_detect(monitored_cameras[0].get_frame(i))
     
     #merge frames into video
-    merge_video.frames_to_video(monitored_cameras[0].get_frame_path(), monitored_cameras[0].get_render_video_path())
+    merge_video.frames_to_video(monitored_cameras[0].get_rendered_frames(), monitored_cameras[0].get_render_video_path())
     
 
 

@@ -12,4 +12,4 @@ class CameraNode:
     
     def get_video_feed(self, frame):
         #return path to directory containing video feed
-        return "camera-continuity/camera" + str(self.value) + "/frame" + str(frame) + ".jpg"
+        return "frames/camera" + str(self.value) + "/frame" + str(frame) + ".jpg"

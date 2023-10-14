@@ -4,16 +4,25 @@ from CameraNode import CameraNode
 #create the node of the cameras to monitor, initially all of them
 
 NUM_CAMERAS = 5
-cameras = []
+monitored_cameras = []
 frame = 0
 
 
 
 def init_cameras():
-    for i in range(NUM_CAMERAS):
-        cameras.append(CameraNode(i))
+    camera_a = CameraNode(1)
 
 
+    camera_b = CameraNode(2)
+    camera_c = CameraNode(3)
+    camera_d = CameraNode(4)
+    camera_e = CameraNode(5)
+
+    monitored_cameras.append(camera_a, 
+                             camera_b, 
+                             camera_c, 
+                             camera_d, 
+                             camera_e)
 
 
 if __name__ == "__main__":
@@ -21,8 +30,14 @@ if __name__ == "__main__":
     while True:
         flagged_cameras = []
         for camera in cameras:
-            # implement gun detection here
             print(camera.get_video_feed(frame))
+            # implement gun detection here
+            is_gun_detected = False
+            if is_gun_detected:
+                flagged_cameras.append(camera)
+        
+
+
         sleep(1)
         frame += 1
 

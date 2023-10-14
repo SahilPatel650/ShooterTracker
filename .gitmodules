@@ -1,4 +1,4 @@
 [submodule "fire-and-gun-detection"]
-	path = fire-and-gun-detection
+	path = fire_and_gun_detection
 	url = https://github.com/kaustubhbhal/fire-and-gun-detection
 	ignore = dirty

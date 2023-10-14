@@ -1,0 +1,3 @@
+[submodule "fire-and-gun-detection"]
+	path = fire-and-gun-detection
+	url = https://github.com/kaustubhbhal/fire-and-gun-detection

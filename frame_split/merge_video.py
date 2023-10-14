@@ -5,6 +5,10 @@ def frames_to_video(folder_path, output_file):
     # Get list of image files in folder and sort them
     image_files = os.listdir(folder_path)
     #image_files.sort()
+
+    # the images are stored as frame#, so sort by frame number
+    image_files.sort(key=lambda f: int(''.join(filter(str.isdigit, f))))
+    
     print("image_files: ", image_files)
 
 

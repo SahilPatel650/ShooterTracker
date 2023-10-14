@@ -1,10 +1,10 @@
 import requests
 from PIL import Image
-from transformers import Blip2Processor, Blip2ForConditionalGeneration
+from transformers import BlipProcessor, BlipForQuestionAnswering
 
 def initialize_model():
-    processor = Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b")
-    model = Blip2ForConditionalGeneration.from_pretrained("Salesforce/blip2-opt-2.7b")
+    processor = BlipProcessor.from_pretrained("Salesforce/blip-vqa-base")
+    model = BlipForQuestionAnswering.from_pretrained("Salesforce/blip-vqa-base")
     return processor, model
 
 def inference(img, question, processor, model, isUrl=False):

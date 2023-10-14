@@ -7,6 +7,7 @@ from frame_split import merge_video
 
 from fire_and_gun_detection import gun_detection
 from person_detection import detect_person
+from person_detection import id_shooter
 
 #create the node of the cameras to monitor, initially all of them
 
@@ -43,9 +44,12 @@ if __name__ == "__main__":
             # logic for shooter id goes here
             print(boxes)
             print(people_boxes)
+            if len(boxes) == 0:
+                continue
+            shooter_id = id_shooter.id_shooter(people_boxes, boxes[0])
         
-        #merge frames into video
-        merge_video.frames_to_video(monitored_cameras[camera_idx].get_rendered_frames(), monitored_cameras[camera_idx].get_render_video_path())
+        # merge frames into video
+        # merge_video.frames_to_video(monitored_cameras[camera_idx].get_rendered_frames(), monitored_cameras[camera_idx].get_render_video_path())
 
     # while True:
     #     flagged_cameras = []

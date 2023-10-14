@@ -35,16 +35,17 @@ def init_models():
 if __name__ == "__main__":
     init_cameras()
     gun_model, people_model = init_models()
-    for camera_idx in len(monitored_cameras):
-        split_video.split(monitored_cameras[camera_idx].get_video_feed(camera_idx), monitored_cameras[camera_idx].get_frame_path())
-        for i in range(0, 268):
+    for camera_idx in range(len(monitored_cameras)):
+        split_video.split(monitored_cameras[camera_idx].get_video_feed(), monitored_cameras[camera_idx].get_frame_path())
+        for i in range(80, 268):
             boxes, confs, class_ids = monitored_cameras[camera_idx].get_gun_bboxes(i, gun_model)
             people_boxes = monitored_cameras[camera_idx].get_people_bboxes(i, people_model)
+            # logic for shooter id goes here
             print(boxes)
             print(people_boxes)
         
-            #merge frames into video
-            merge_video.frames_to_video(monitored_cameras[camera_idx].get_rendered_frames(), monitored_cameras[camera_idx].get_render_video_path())
+        #merge frames into video
+        merge_video.frames_to_video(monitored_cameras[camera_idx].get_rendered_frames(), monitored_cameras[camera_idx].get_render_video_path())
 
     # while True:
     #     flagged_cameras = []

@@ -1,4 +1,3 @@
-import os
 class CameraNode:
     def __init__(self, value, neighbors=[]):
         self.value = value
@@ -10,6 +9,7 @@ class CameraNode:
     def get_neighbor(self):
         return self.neighbors
     
-    def get_video_feed(self, frame):
+    def get_frame(self, frame):
         #return path to directory containing video feed
-        return "frames/camera" + str(self.value) + "/frame" + str(frame) + ".jpg"
+        return "video-data/frames/camera" + str(self.value) + "/frame" + str(frame) + ".jpg"
+            

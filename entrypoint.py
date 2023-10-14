@@ -6,14 +6,13 @@ from frame_split import split_video
 from frame_split import merge_video
 
 from fire_and_gun_detection import gun_detection
+from person_detection import detect_person
 
 #create the node of the cameras to monitor, initially all of them
 
 NUM_CAMERAS = 5
 monitored_cameras = []
 frame = 0
-
-
 
 def init_cameras():
     camera_a = CameraNode(1)
@@ -28,19 +27,24 @@ def init_cameras():
     # monitored_cameras.append(camera_d) 
     # monitored_cameras.append(camera_e) 
 
-                             
+def init_models():
+    gun_model = gun_detection.load_yolo()
+    people_model = detect_person.init_model()
+    return gun_model, people_model
 
 if __name__ == "__main__":
     init_cameras()
-    split_video.split(monitored_cameras[0].get_video_feed(0), monitored_cameras[0].get_frame_path())
-    for i in range(0, 268):
-        boxes, confs, class_ids = gun_detection.image_detect(monitored_cameras[0].get_frame(i))
-    
-    #merge frames into video
-    merge_video.frames_to_video(monitored_cameras[0].get_rendered_frames(), monitored_cameras[0].get_render_video_path())
-    
-
-
+    gun_model, people_model = init_models()
+    for camera_idx in len(monitored_cameras):
+        split_video.split(monitored_cameras[camera_idx].get_video_feed(camera_idx), monitored_cameras[camera_idx].get_frame_path())
+        for i in range(0, 268):
+            boxes, confs, class_ids = monitored_cameras[camera_idx].get_gun_bboxes(i, gun_model)
+            people_boxes = monitored_cameras[camera_idx].get_people_bboxes(i, people_model)
+            print(boxes)
+            print(people_boxes)
+        
+            #merge frames into video
+            merge_video.frames_to_video(monitored_cameras[camera_idx].get_rendered_frames(), monitored_cameras[camera_idx].get_render_video_path())
 
     # while True:
     #     flagged_cameras = []
@@ -51,8 +55,5 @@ if __name__ == "__main__":
     #         if is_gun_detected:
     #             flagged_cameras.append(camera)
         
-
     #     sleep(1)
     #     frame += 1
-
-

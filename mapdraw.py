@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw
 
-def color_semicircle(image, color, center_x1, center_y1, startInt, endInt, savePath):
+def color_semicircle(image, color, center_x1, center_y1, startInt, endInt):
     width, height = image.size
     # Create a new image with the same size and a transparent background
     semicircle_image = Image.new('RGBA', (width, height), (255, 255, 255, 0))

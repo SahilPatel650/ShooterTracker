@@ -5,5 +5,7 @@ yolo-training/yolov8x.pt
 */__pycache__
 *.pyc
 yolov3.weights
-*/.DS_Store
+.DS_Store
 *.mp4
+.idea
+.vscode

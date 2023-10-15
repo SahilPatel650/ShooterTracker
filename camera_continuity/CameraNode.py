@@ -9,9 +9,9 @@ class CameraNode:
         self.neighbors = neighbors
 
     def add_neighbor(self, node):
-        self.neighbors.append(node)
+        self.neighbors.extend(node)
 
-    def get_neighbor(self):
+    def get_neighbors(self):
         return self.neighbors
     
     def get_video_feed(self):

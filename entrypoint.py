@@ -5,6 +5,7 @@ import mapdraw
 from PIL import Image
 from camera_continuity.CameraNode import CameraNode
 from frame_split import split_video
+from frame_split import merge_video
 
 from fire_and_gun_detection import gun_detection
 from person_detection import detect_person
@@ -64,8 +65,6 @@ if __name__ == "__main__":
     common_frames = min(num_frames)
 
     for i in range(common_frames):
-        print("Currently monitoring cameras:" + str(list(map(lambda x: x.value, monitored_cameras))))
-        #print("Last detected camera: " + last_detected_camera.value if last_detected_camera != None else "None")
         new_monitored_cameras = []
         # draw on map based on new_monitored_cameras
         image = Image.open("video-data/rawmap.png")
@@ -89,9 +88,7 @@ if __name__ == "__main__":
 
             if len(boxes) > 0:
                 new_monitored_cameras = [monitored_cameras[camera_idx]]
-                last_detected_camera = monitored_cameras[camera_idx]
-                print("Gun detected in camera " + (monitored_cameras[camera_idx].value))
-                
+                last_detected_camera = all_cameras[camera_idx]
 
             if len(people_boxes) == 0 or len(boxes) == 0:
                 continue
@@ -116,12 +113,11 @@ if __name__ == "__main__":
 
         monitored_cameras = new_monitored_cameras
 
-        # merge frames into video
-    for camera_idx in range(len(all_cameras)):
-        merge_video.frames_to_video(all_cameras[camera_idx].get_rendered_frames(), 
-                                    all_cameras[camera_idx].get_render_video_path(), 
-                                    common_frames,
-                                    all_cameras[camera_idx])
+    for camera in all_cameras:
+        merge_video.frames_to_video(camera.get_rendered_frames(), camera.get_render_video_path(), common_frames, camera)
+    merge_video.frames_to_video("video-data/rendered-maps", "video-data/rendered-video/live-map.mp4", common_frames, camera=None)
+    # merge frames into video
+    # merge_video.frames_to_video(monitored_cameras[camera_idx].get_rendered_frames(), monitored_cameras[camera_idx].get_render_video_path())
 
     # while True:
     #     flagged_cameras = []

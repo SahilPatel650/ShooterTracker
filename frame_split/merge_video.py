@@ -5,10 +5,11 @@ def frames_to_video(folder_path, output_file, common_frames, camera):
     # Get list of image files in folder and sort them
 
     #if a frame is missing, get it from the frame foler
-    for i in range(common_frames):
-        if not os.path.isfile(folder_path + "/frame" + str(i) + ".jpg"):
-            print("here")
-            os.system("cp " + camera.get_frame(i) + " " + camera.get_rendered_frames())
+    if camera != None:
+        for i in range(common_frames):
+            if not os.path.isfile(folder_path + "/frame" + str(i) + ".jpg"):
+                print("here")
+                os.system("cp " + camera.get_frame(i) + " " + camera.get_rendered_frames())
 
     image_files = [f for f in os.listdir(folder_path) if not f.startswith('.')]     
 

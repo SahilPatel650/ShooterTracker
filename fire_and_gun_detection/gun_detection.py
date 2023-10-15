@@ -78,7 +78,7 @@ def image_write(img_path, img):
 	path = img_path.split('/')
 	path[1] = 'rendered-frames'
 	new_path = '/'.join(path)
-	print(new_path)
+	# print(new_path)
 	cv2.imwrite(new_path, img)
 
 def image_detect(img_path, loaded_model): 

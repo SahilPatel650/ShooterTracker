@@ -12,5 +12,4 @@ def get_person_gun_distance(person_box, gun_box):
 
 def id_shooter(person_boxes, gun_box):
     distances_with_indices = [(i, get_person_gun_distance(person_boxes[i], gun_box)) for i in range(len(person_boxes))]
-    min_idx, min_dist = min(distances_with_indices, key=lambda x:x[1])
-    return min_idx, min_dist
+    return min(distances_with_indices, key=lambda x:x[1])[0]

@@ -9,6 +9,5 @@ def inference(model, img):
     for i in range(len(results.cls)):
         if results.cls[i] != 0:
             continue
-        bboxes.append(results.data[i].cpu().tolist())
+        bboxes.append(results.xyxy[0])
     return bboxes
-

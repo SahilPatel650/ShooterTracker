@@ -4,6 +4,7 @@ from time import sleep
 from camera_continuity.CameraNode import CameraNode
 from frame_split import split_video
 from frame_split import merge_video
+import cv2
 
 from fire_and_gun_detection import gun_detection
 from person_detection import detect_person
@@ -38,15 +39,16 @@ if __name__ == "__main__":
     gun_model, people_model = init_models()
     for camera_idx in range(len(monitored_cameras)):
         split_video.split(monitored_cameras[camera_idx].get_video_feed(), monitored_cameras[camera_idx].get_frame_path())
-        for i in range(80, 82):
+        for i in range(80, 100):
             boxes, confs, class_ids = monitored_cameras[camera_idx].get_gun_bboxes(i, gun_model)
             people_boxes = monitored_cameras[camera_idx].get_people_bboxes(i, people_model)
             # logic for shooter id goes here
-            print(boxes)
-            print(people_boxes)
+            # print(boxes)
+            # print(people_boxes)
             if len(boxes) == 0:
                 continue
             shooter_id = id_shooter.id_shooter(people_boxes, boxes[0])
+            gun_detection.draw_person_box(people_boxes[shooter_id], monitored_cameras[camera_idx].get_rendered_frames()+"/frame"+str(i)+".jpg")
         
         # merge frames into video
         merge_video.frames_to_video(monitored_cameras[camera_idx].get_rendered_frames(), monitored_cameras[camera_idx].get_render_video_path())

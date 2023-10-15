@@ -91,7 +91,11 @@ if __name__ == "__main__":
             
         
         # merge frames into video
-        # merge_video.frames_to_video(monitored_cameras[camera_idx].get_rendered_frames(), monitored_cameras[camera_idx].get_render_video_path())
+    for camera_idx in range(len(all_cameras)):
+        merge_video.frames_to_video(all_cameras[camera_idx].get_rendered_frames(), 
+                                    all_cameras[camera_idx].get_render_video_path(), 
+                                    800,
+                                    all_cameras[camera_idx])
 
     # while True:
     #     flagged_cameras = []

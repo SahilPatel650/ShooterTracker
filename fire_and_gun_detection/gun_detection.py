@@ -69,7 +69,7 @@ def draw_labels(boxes, confs, colors, class_ids, classes, img):
 	#cv2.imshow("Image", img)
 
 def draw_person_box(box, img_path):
-    x1, y1, x2, y2 = [int(i*0.4) for i in box[:4]]
+    x1, y1, x2, y2 = box
     img = cv2.imread(img_path)
     cv2.rectangle(img, (x1, y1), (x2, y2), (0,0,255), 2)
     image_write(img_path, img)

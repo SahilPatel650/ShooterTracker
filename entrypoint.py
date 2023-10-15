@@ -6,7 +6,7 @@ from frame_split import split_video
 from frame_split import merge_video
 import cv2
 
-from fire_and_gun_detection import gun_detection
+from gun_detection import gun_detection
 from person_detection import detect_person
 from person_detection import id_shooter
 

@@ -88,7 +88,7 @@ if __name__ == "__main__":
 
             if len(boxes) > 0:
                 new_monitored_cameras = [monitored_cameras[camera_idx]]
-                last_detected_camera = all_cameras[camera_idx]
+                last_detected_camera = monitored_cameras[camera_idx]
 
             if len(people_boxes) == 0 or len(boxes) == 0:
                 continue
@@ -102,6 +102,8 @@ if __name__ == "__main__":
                 description = desc.get_description(rendered_frame_path, shooter_box[:2], shooter_box[2:4], processor,
                                                    vqa_model)
             print(description)
+            if frame % 100 == 0:
+                description = ""
 
         if new_monitored_cameras == []:
             if last_detected_camera == None:

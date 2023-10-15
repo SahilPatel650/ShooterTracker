@@ -5,3 +5,4 @@ yolo-training/yolov8x.pt
 */__pycache__
 *.pyc
 yolov3.weights
+*/.DS_Store

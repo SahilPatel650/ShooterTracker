@@ -4,6 +4,7 @@ from time import sleep
 from camera_continuity.CameraNode import CameraNode
 from frame_split import split_video
 from frame_split import merge_video
+from map_rendering_dir import map_render
 import cv2
 
 from fire_and_gun_detection import gun_detection
@@ -47,6 +48,8 @@ if __name__ == "__main__":
             # print(people_boxes)
             if len(boxes) == 0:
                 continue
+            else:
+                map_render.get_picture(camera_idx)
             shooter_id = id_shooter.id_shooter(people_boxes, boxes[0])
             gun_detection.draw_person_box(people_boxes[shooter_id], monitored_cameras[camera_idx].get_rendered_frames()+"/frame"+str(i)+".jpg")
         

@@ -1,6 +1,6 @@
 import sys, os
 sys.path.extend([f'./{name}' for name in os.listdir("../") if os.path.isdir(name)])
-from gun_detection import gun_detection
+from fire_and_gun_detection import gun_detection
 from person_detection import detect_person
 
 class CameraNode:

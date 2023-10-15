@@ -1,12 +1,11 @@
 import cv2
 import numpy as np 
-import argparse
 
 #Load yolo
 def load_yolo():
-	net = cv2.dnn.readNet("gun_detection/yolov3.weights", "gun_detection/yolov3.cfg")
+	net = cv2.dnn.readNet("fire_and_gun_detection/yolov3.weights", "fire_and_gun_detection/yolov3.cfg")
 	classes = []
-	with open("gun_detection/obj.names", "r") as f:
+	with open("fire_and_gun_detection/obj.names", "r") as f:
 		classes = [line.strip() for line in f.readlines()]
 
 	layers_names = net.getLayerNames()

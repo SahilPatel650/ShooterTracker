@@ -1,12 +1,12 @@
 import sys, os
+print([f'./{name}' for name in os.listdir(".") if os.path.isdir(name)])
 sys.path.extend([f'./{name}' for name in os.listdir(".") if os.path.isdir(name)])
 from time import sleep
 from camera_continuity.CameraNode import CameraNode
 from frame_split import split_video
 from frame_split import merge_video
-import cv2
 
-from gun_detection import gun_detection
+from fire_and_gun_detection import gun_detection
 from person_detection import detect_person
 from person_detection import id_shooter
 

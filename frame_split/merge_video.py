@@ -3,19 +3,11 @@ import os
 
 def frames_to_video(folder_path, output_file):
     # Get list of image files in folder and sort them
-    image_files = os.listdir(folder_path)
-    #image_files.sort()
+    image_files = [f for f in os.listdir(folder_path) if not f.startswith('.')]
 
     # the images are stored as frame#, so sort by frame number
     image_files.sort(key=lambda f: int(''.join(filter(str.isdigit, f))))
     
-    print("image_files: ", image_files)
-
-
-
-
-
-
     # Set frame rate and size of output video
     fps = 30
     img = cv2.imread(os.path.join(folder_path, image_files[0]))

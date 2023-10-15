@@ -2,5 +2,6 @@ yolo-training/data
 yolo-training/yolov8n.pt
 yolo-training/yolov8s.pt
 yolo-training/yolov8x.pt
-camera-continuity/__pycache__
+*/__pycache__
 *.pyc
+yolov3.weights

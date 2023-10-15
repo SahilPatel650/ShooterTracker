@@ -6,3 +6,4 @@ yolo-training/yolov8x.pt
 *.pyc
 yolov3.weights
 */.DS_Store
+*.mp4

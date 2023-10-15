@@ -30,8 +30,9 @@ def frames_to_video(folder_path, output_file, common_frames, camera):
     for image_file in image_files:
         img_path = os.path.join(folder_path, image_file)
         print(img_path)
-        img = cv2.imread(img_path)
-        video_writer.write(img)
+        img = cv2.imread(img_path)        
+        img_resized = cv2.resize(img, size, interpolation=cv2.INTER_AREA)
+        video_writer.write(img_resized)
 
     # Release VideoWriter object
     video_writer.release()

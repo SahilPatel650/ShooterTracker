@@ -20,8 +20,8 @@ all_cameras = []
 frame = 0
 
 def init_cameras():
-    camera_1 = CameraNode(1, [1,2])
-    camera_2 = CameraNode(2, [1,2,3])
+    camera_1 = CameraNode(1, [1,2,3])
+    camera_2 = CameraNode(2, [2,3])
     camera_3 = CameraNode(3, [2,3,4])
     camera_4 = CameraNode(4, [3,4])
 
@@ -53,6 +53,8 @@ if __name__ == "__main__":
     common_frames = min(num_frames)
 
     for i in range(common_frames):
+        print("Currently monitoring cameras:" + str(list(map(lambda x: x.value, monitored_cameras))))
+        #print("Last detected camera: " + last_detected_camera.value if last_detected_camera != None else "None")
         new_monitored_cameras = []
         for camera_idx in range(len(monitored_cameras)):
 
@@ -61,7 +63,8 @@ if __name__ == "__main__":
 
             if len(boxes) > 0 :
                 new_monitored_cameras = [monitored_cameras[camera_idx]]
-                last_detected_camera = all_cameras[camera_idx]
+                last_detected_camera = monitored_cameras[camera_idx]
+                print("Gun detected in camera " + (monitored_cameras[camera_idx].value))
                 
 
             if len(people_boxes) == 0 or len(boxes) == 0:
@@ -94,7 +97,7 @@ if __name__ == "__main__":
     for camera_idx in range(len(all_cameras)):
         merge_video.frames_to_video(all_cameras[camera_idx].get_rendered_frames(), 
                                     all_cameras[camera_idx].get_render_video_path(), 
-                                    800,
+                                    common_frames,
                                     all_cameras[camera_idx])
 
     # while True:

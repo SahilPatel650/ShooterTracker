@@ -22,7 +22,7 @@ all_cameras = []
 frame = 0
 
 camera_coords = [
-    (318, 411), (0, 520), (0, 90), (385, 0)
+    (382, 378), (37, 525), (37, 85), (493, 37)
 ]
 
 angles = [
@@ -69,13 +69,13 @@ if __name__ == "__main__":
         # draw on map based on new_monitored_cameras
         image = Image.open("video-data/rawmap.png")
         if len(monitored_cameras) == 1:
-            image = mapdraw.color_semicircle(image, (255, 0, 0), camera_coords[monitored_cameras[0].value - 1][0],
+            image = mapdraw.color_semicircle(image, (255, 0, 0, 100), camera_coords[monitored_cameras[0].value - 1][0],
                                      camera_coords[monitored_cameras[0].value - 1][1],
                                      angles[monitored_cameras[0].value - 1][0],
                                      angles[monitored_cameras[0].value - 1][1])
         else:
             for item in monitored_cameras:
-                image = mapdraw.color_semicircle(image, (255, 255, 0), camera_coords[item.value - 1][0],
+                image = mapdraw.color_semicircle(image, (255, 255, 0, 100), camera_coords[item.value - 1][0],
                                          camera_coords[item.value - 1][1],
                                          angles[item.value - 1][0],
                                          angles[item.value - 1][1])

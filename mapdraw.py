@@ -10,10 +10,10 @@ def color_semicircle(image, color, center_x1, center_y1, startInt, endInt):
     # Define the radius and color (red or yellow)
     radius = 50  # Adjust the radius as needed
 
-    # Draw the semicircle
+    # Draw the circle
     draw.pieslice(((center_x - radius, center_y - radius),
                    (center_x + radius, center_y + radius)),
-                  startInt, endInt, fill=color)  # -90, 90 for C3
+                  0, 360, fill=color)  # -90, 90 for C3
     # Combine the original image and the semicircle image
     result_image = Image.alpha_composite(image.convert('RGBA'), semicircle_image)
 
